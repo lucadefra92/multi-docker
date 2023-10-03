@@ -14,3 +14,10 @@ after_success:
   - docker build -t lucadefra92/multi-server ./server
   - docker build -t lucadefra92/multi-worker ./worker
 
+  # login to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # take those images and push them to docker hum
+  - docker push -t lucadefra92/multi-client
+  - docker push -t lucadefra92/multi-nginx
+  - docker push -t lucadefra92/multi-server
+  - docker push -t lucadefra92/multi-worker
